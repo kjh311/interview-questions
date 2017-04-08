@@ -13,3 +13,46 @@ li{
 br{
   margin-bottom: 20px;
 }
+#ice{
+  float: right;
+  /*display: none;*/
+  /*visibility: hidden;*/
+  /*display: inline;*/
+  padding-left: 100px;
+}
+#lorem{
+font-size: 200%;
+}
+#lorem:first-letter{
+font-size: 400%;
+color: red;
+}
+#checked:checked{
+ checked: true;
+}
+#box{
+  border: 2px solid red;
+  width: 400px;
+  height: 400px;
+  position: relative;
+  top: 10px;
+}
+#red{
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  background-color: blue;
+ /* top: 50px;
+  left: 50px;*/
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 150px;
+
+}
+#ice-div{
+  display: block;
+  border: 2px solid green;
+  height: 2000px;
+}
