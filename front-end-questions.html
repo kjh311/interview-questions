@@ -15,100 +15,418 @@
 
   <h2>GENERAL QUESTIONS:</h2>
 
-  <a href="http://coderchronicles.org/2015/09/29/my-answers-to-the-h5bp-front-end-developer-interview-questions/" target="_blank">Answers to these questions by someone else</a>
-<br/>
-<br/>
 
 
   <ul>
     <li>What did you learn yesterday/this week?</li>
+
     <li>What excites or interests you about coding?</li>
+    <p> The ability to create something out of nothing and then nurture it and see if grow and evolve, somewhat like being a gardener, but in which you are the creator of your own plants.</p>
+
     <li>What is a recent technical challenge you experienced and how did you solve it?</li>
+
     <li>What UI, Security, Performance, SEO, Maintainability or Technology considerations do you make while building a web application or site?</li>
-    <li>Talk about your preferred development environment.</li>
-    <li>Which version control systems are you familiar with?</li>
-    <li>Can you describe your workflow when you create a web page?</li>
-    <li>If you have 5 different stylesheets, how would you best integrate them into the site?</li>
-    <li>Can you describe the difference between progressive enhancement and graceful degradation?</li>
-    Progressive enhancement is a strategy for web design that emphasizes core webpage content first. This strategy then progressively adds more nuanced and technically rigorous layers of presentation and features on top of the content as the end-user's browser/internet connection allow.<br>
-    Graceful degradation is the ability of a computer, machine, electronic system or network to maintain limited functionality even when a large portion of it has been destroyed or rendered inoperative. The purpose of graceful degradation is to prevent catastrophic failure. 
-    <li>How would you optimize a website's assets/resources?</li>
-    <li>How many resources will a browser download from a given domain at a time?
-      What are the exceptions?</li>
-      <li>Name 3 ways to decrease page load (perceived or actual load time).</li>
-      <li>If you jumped on a project and they used tabs and you used spaces, what would you do?</li>
-      <li>Describe how you would create a simple slideshow page.</li>
-      <li>If you could master one technology this year, what would it be?</li>
-      <li>Explain the importance of standards and standards bodies.</li>
-      <li>What is Flash of Unstyled Content? How do you avoid FOUC?</li>
-      <li>Explain what ARIA and screenreaders are, and how to make a website accessible.</li>
-      <li>Explain some of the pros and cons for CSS animations versus JavaScript animations.</li>
-    </ul>
 
-    <h1>HTML QUESTIONS:</h1>
+    <p>    I like to adhere by Kent Beck’s maxim:
 
-    <ul>
-      <li>What does a doctype do?</li>
-      <li>What's the difference between standards mode and quirks mode?</li>
-      <li>What's the difference between HTML and XHTML?</li>
-      <li>Are there any problems with serving pages as application/xhtml+xml?</li>
-      <li>How do you serve a page with content in multiple languages?</li>
-      <li>What kind of things must you be wary of when design or developing for multilingual sites?</li>
-      <li>What are data- attributes good for?</li>
-      <li>Consider HTML5 as an open web platform. What are the building blocks of HTML5?</li>
-      <li>Describe the difference between a cookie, sessionStorage and localStorage.</li>
-      <li>Describe the difference between &lt;script&gt;, &lt;script async&gt; and &lt;script defer&gt;?</li>
-      <li>Why is it generally a good idea to position CSS &lt;link&gt;s between &lt;head&gt;&lt;/head&gt; and JS &lt;script&gt;s just before &lt;/body&gt;? Do you know any exceptions?</li>
-      <li>What is progressive rendering?</li>
-      <li>Have you used different HTML templating languages before?</li>
-    </ul>
+      Make it Work.  Make it Right.  Make it Fast.
 
-    <h1>CSS QUESTIONS:</h1>
+      In other words, I tend to focus first on just shipping something, to determine if this even is what the customer wants.  Then, we can refactor and optimize and think about performance, security, etc.  One constant consideration I am making, in regards to maintainability: every time some code appears more than once, that’s a flag and I usually add a Todo to the backlog to come back and make it DRY.  Same thing with if I have a function that does more than one thing well, I’ll likely want to refactor that also.</p>
 
-    <ul>
-      <li>What is the difference between classes and ID's in CSS?</li>
-      Classes can be applied to many elements, IDs only 1.
-      <li>What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?</li>
-      <li>Describe Floats and how they work.</li>
-      <li>Describe z-index and how stacking context is formed.</li>
-      <li>Describe BFC(Block Formatting Context) and how it works.</li>
-      <li>What are the various clearing techniques and which is appropriate for what context?</li>
-      <li>Explain CSS sprites, and how you would implement them on a page or site.</li>
+      <li>Talk about your preferred development environment.</li>
+      <p>I like I nicely customized command line (eg one that displays the name of your current branch), lots of screen real estate (eg one screen for live reloading of app views and another for code), and automated testing that is running continually in the background.</p>
+
+      <li>Which version control systems are you familiar with?</li>
+
+      <p>Git</p>
+
+      <li>Can you describe your workflow when you create a web page?</li>
+
+      <p>Most likely I will have general layout template that I will use as a starting point (eg a landing page template, a detail page template.)  Then, I focus on creating some solid, semantically meaningful, and well structured markup. After that, I’ll apply styles, and finally behaviors with JS. In most cases, though, it’s more iterative and less linear than this 1-2-3 approach.</p>
+
+      <li>If you have 5 different stylesheets, how would you best integrate them into the site?</li>
+
+      <p>I would import them as partials into a main stylesheets using Sass.  I would also be consider refactoring the CSS in the respective stylesheets, to prevent duplicated css.</p>
+
+      <li>Can you describe the difference between progressive enhancement and graceful degradation?</li>
+      <p>Graceful degradation is more of a waterfall-oriented model, while Progressive Enhancement is more aligned with Agile and Iterative methods.
+
+        Graceful degradation is when you have a fancy feature, such as a tab-based layout, but which would degrade to a stacked layout for a browser that can’t support whatever is generating the tabs.  In other words, it allows users with an inferior browser (or user agent)  to still access app content, but with a possibly more basic UI.
+
+        Progressive enhancement is very similar, but rather than starting with the fancy feature and then adding a fall-back for people with browsers that don’t support it, you start with the very basic design, and maybe even ship that as your first release, and then progressively enhance the design as you go. So, in the above example, we may have shipped a very nicely designed page with stacked content (and anchor tag links) and then later added the tabs.</p>
+
+        Progressive enhancement is a strategy for web design that emphasizes core webpage content first. This strategy then progressively adds more nuanced and technically rigorous layers of presentation and features on top of the content as the end-user's browser/internet connection allow.<br>
+        Graceful degradation is the ability of a computer, machine, electronic system or network to maintain limited functionality even when a large portion of it has been destroyed or rendered inoperative. The purpose of graceful degradation is to prevent catastrophic failure. 
+        <li>How would you optimize a website's assets/resources?</li>
+
+        Lower file size of images/create a sprite. 
+
+        <li>How many resources will a browser download from a given domain at a time?
+          What are the exceptions?</li>
+
+          <li>Name 3 ways to decrease page load (perceived or actual load time).</li>
+          1. Reduce perceived download time: Add a some visual feedback, either a spinner or an actual progress, bar that displays during page load.<br /><br />
+          2. Load static content first: Ensure that static page content loads first and then load additional assets in the background afterwards.<br /><br />
+          3. Reduce the quantity of items to load:  Eg combine all js files into a single file, all css files into a single file, etc), to reduce the number of requests that the browser needs to make.
+
+          <li>If you jumped on a project and they used tabs and you used spaces, what would you do?</li>
+          I’d use tabs, but I would also inquire as to why tabs were being used and check to see if there was any interest in switching to using spaces for new projects.
+
+          <li>Describe how you would create a simple slideshow page.</li>
+
+          1. In the main page content area, add an unordered list containing slide show content.<br /><br />
+          2. Add some CSS that hides all li selectors by default.<br /><br />
+          3. Add some JS that show the first li selector by default.<br /><br />
+          4. Add events that allow for hiding the current li selector and showing the next/previous selector.
+
+          <li>If you could master one technology this year, what would it be?</li>
+          React
+          <li>Explain the importance of standards and standards bodies.</li>
+          Standards is what allows me to use the same markup across many browsers and know with a reasonable amount of certainty that the page will render identically or similarly.  It reduces the need for checking what user agent is in use and modifying the markup/code to suit.  It also allow a completely new developer to come on board to a project and still be able write markup or code that is consistent with that of other developers.
+          <li>What is Flash of Unstyled Content? How do you avoid FOUC?</li>
+          This occurs when a page is rendered in the browser before styling has been applied. Sometimes it can be caused by that some of the css rendering is dependent on JavaScript, but the JS is not being loaded until at the end of the page, so you get this brief unstyled moment.  One way to avoid it is to display a loading message until all page content is ready to be viewed.
+          <li>Explain what ARIA and screenreaders are, and how to make a website accessible.</li>
+          Accessible Rich Internet Applications (ARIA) defines ways to make Web content and Web applications (especially those developed with Ajax and JavaScript) more accessible to people with disabilities. ... ARIA is a set of special accessibility attributes which can be added to any markup, but is especially suited to HTML.<br /><br />
+          Screenreaders are what someone who is blind would use to read rather than view a page.  For these users, it can be very helpful to include things like a “Jump to main content” anchor tag at the very beginning of the markup to allow them to not have to navigate through all the header content (which might contain, say, a dropdown with links to every page in the site.)  Additionally, it is for these users in particular that one should be sure to always include alt tags for images and icons.
+
+          <li>Explain some of the pros and cons for CSS animations versus JavaScript animations.</li>
+          A CSS animation will likely require much less code since you are leveraging the browser’s graphics engine. However, they are really only suited for a more standard animation, such as a left-right transitions.  JS animations will increase page weight, since you are providing all the code for the animation, but they are better suited for something very customized where you need a lot of control.
+
+          <li>What does CORS stand for and what issue does it address?</li>
+
+          Cross Origin Resource Sharing refers to when secure data is being requested from a domain other than the domain from which the content is being served.  Since these types of requests can be a sign that you are being hacked, you will want to have some kind of token handshake (eg client/secret) between your domain and the other domain, to ensure they are trusted.
+
+
+        </ul>
+
+        <h1>HTML QUESTIONS:</h1>
+
+        <ul>
+          <li>What does a doctype do?</li>
+          The doctype, which must appears at the very begining of your markup, defines what type of markup you will be using, eg HTML5 or XHTML, etc.  You can also inform robots about things like the main language in use, such as lang=”en”.
+
+          <li>What's the difference between standards mode and quirks mode?</li>
+
+          Quirks mode also known as Compatibility Mode - means your page is running without a document type declared(this is old school, so this is most likely not needed anymore) The whole point of quirks mode is that it's a compatibility mode for IE5. This means that in addition to changing the layout mode, it also switches off most of the browser features that have been invented since IE5. In quirks mode, the web browser attempts to render/make code based on a ‘best-guess’, this includes a generous interpretation of code that may be non-standard or poorly-formed. if you don't declare a doctype, the browser will have to guess what version of HTML/CSS you're running Quirks mode enables older HTML documents to still ‘work its a technique used by web browsers to maintain backward compatibility with older webpages.
+
+          <li>What's the difference between HTML and XHTML?</li>
+          XHTML is a sub-set of XML and was an attempt at making markup rules more strict, such as requiring inline closing tags for br tag (ie “<br />”), but then HTML5 came along, and XML was mostly overtaken by JSON for web app data exchange, and XHTML has since also fallen out of vogue.
+
+          <li>Are there any problems with serving pages as application/xhtml+xml?</li>
+
+          <li>How do you serve a page with content in multiple languages?</li>
+          Well, first, you want to make sure your page will support all the various characters of the language, so be sure to set character encoding to utf-8 at the very beginning. You also want to inform robots of the various languages in use in the doctype.  Other than that, I’d say it’s implementation and domain-specific.
+
+          <li>What kind of things must you be wary of when design or developing for multilingual sites?</li>
+          First, be sure you can support all the characters of the various languages.  Second, make sure your site layout can respond to differences in the amount of real estate needed for content blocks.  (Ie one language may require several lines for a certain content block, while another may just require one.)  Last and definitely not least, the site layout will need to for both left and right reading directions, so if you switch from English to, say, Hebrew, you may want to flip certain components to accommodate the switch in reading direction.
+
+          <li>What are data- attributes good for?</li>
+
+          The data-* attributes gives us the ability to embed custom data attributes on all HTML elements. The stored (custom) data can then be used in the page's JavaScript to create a more engaging user experience (without any Ajax calls or server-side database queries).
+
+          <li>Consider HTML5 as an open web platform. What are the building blocks of HTML5?</li>
+          They’re great for passing contextual data to, for example, JS event handler.
+
+          The data-* attributes gives us the ability to embed custom data attributes on all HTML elements. The stored (custom) data can then be used in the page's JavaScript to create a more engaging user experience (without any Ajax calls or server-side database queries).
+
+          <li>Consider HTML5 as an open web platform. What are the building blocks of HTML5?</li>
+
+          The main building blocks are the new tags, such as Article, Header, Nav, Section, etc.  Additionally, HTML5 provides the ability for accessing more advanced browser-native UI components, such as sliders and date-pickers, as well as access to improved form validation, eg having the browser check if an email address is validly formed.
+
+
+
+          <li>Describe the difference between a cookie, sessionStorage and localStorage.</li>
+          A cookie is a piece of data that has been stored in a user’s local browser, and which can be used to personalize an app or site for users’ viewing it in that browser.  sessionStorage and localStorage are ways of storing data locally, one for the current session only, the other permanently (or until deleted.)
+
+          <li>Describe the difference between &lt;script&gt;, &lt;script async&gt; and &lt;script defer&gt;?</li>
+
+          The async attribute is a boolean attribute.<br/>
+
+      When present, it specifies that the script will be executed asynchronously as soon as it is available.<br/><br/>
+
+      The defer attribute is a boolean attribute.<br/>
+
+When present, it specifies that the script is executed when the page has finished parsing.
+
+          <li>Why is it generally a good idea to position CSS &lt;link&gt;s between &lt;head&gt;&lt;/head&gt; and JS &lt;script&gt;s just before &lt;/body&gt;? Do you know any exceptions?</li>
+
+          CSS should be loaded in the head section to so that styling can be loaded before the page body loads, else the page will appear without styling.  JS should be loaded after all content has loaded, ie just before the closing body tag, so that loading of possibly large JS files does not initial page load.
+
+          <li>What is progressive rendering?</li>
+          This is when you initially load a lower resolution version of an image, and then progressively add resolution to the image, which prevents the user from just seeing no image until the entire image has loaded.
+
+          <li>Have you used different HTML templating languages before?</li>
+          (Moustache, Hangdlebars, Underscrore)
+
+        </ul>
+
+        <h1>CSS QUESTIONS:</h1>
+
+        <ul>
+          <li>What is the difference between classes and ID's in CSS?</li>
+          Classes effect multiple elements, ID's effect only 1.
+
+
+          <li>What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?</li>
+          A CSS Reset (or “Reset CSS”) is a short, often compressed (minified) set of CSS rules that resets the styling of all HTML elements to a consistent baseline.
+
+          Normalize.css preserves useful defaults rather than "unstyling" everything. For example, elements like sup or sub "just work" after including normalize.css (and are actually made more robust) whereas they are visually indistinguishable from normal text after including reset.css. So, normalize.css does not impose a visual starting point (homogeny) upon you. This may not be to everyone's taste. The best thing to do is experiment with both and see which gels with your preferences.
+
+          <li>Describe Floats and how they work.</li>
+
+          Floats bring an element to the left or right of its boundry box and allows text and inline elements to flow around it.
+
+          <li>Describe z-index and how stacking context is formed.</li>
+          Z-index defines if an element is above or below, layers. Position not static.<br /><br />
+
+          So what is a stacking context? A stacking context is an element that contains a set of layers. This can be a root stacking context, as created by the html element. Or it can be a local stacking context, as created by specific properties and values.
+
+          "Contains a stack of layers" is a weird phrase, but a simple concept. Within a local stacking context, the z-index values of its children are set relative to that element rather than to the document root. Layers outside of that context — i.e. sibling elements of a local stacking context — can't sit between layers within it.
+
+
+
+          <li>Describe BFC(Block Formatting Context) and how it works.</li>
+          A Block Formatting Context is part of the visual CSS rendering of a web page in which block boxes are laid out. The positioning scheme to which it belongs is normal flow. According to W3C:
+
+          Floats, absolutely positioned elements, inline-blocks, table-cells, table-captions, and elements with ‘overflow’ other than ‘visible’ (except when that value has been propagated to the viewport) establish new block formatting contexts.
+          In simpler words, as we can see in the above diagram, all the boxes that belong to a block formatting context are aligned left (for left-to-right formatting) and their left outer edge touches the left edge of the containing block.
+
+          <li>What are the various clearing techniques and which is appropriate for what context?</li>
+          1. clear: both;
+
+          2. The Empty Div Method is, quite literally, an empty div. &lt;div style="clear: both;"&gt;&lt;/div&gt;. Sometimes you'll see a <br> element or some other random element used, but div is the most common because it has no browser default styling, doesn't have any special function, and is unlikely to be generically styled with CSS.
+
+          3. The Overflow Method relies on setting the overflow CSS property on a parent element. If this property is set to auto or hidden on the parent element, the parent will expand to contain the floats, effectively clearing it for succeeding elements. This method can be beautifully semantic as it may not require an additional elements. 
+
+          4. The Easy Clearing Method uses a clever CSS pseudo selector (:after) to clear floats. Rather than setting the overflow on the parent, you apply an additional class like "clearfix" to it. Then apply this CSS:
+
+          <li>Explain CSS sprites, and how you would implement them on a page or site.</li>
+          An image sprite is a collection of images put into a single image. A web page with many images can take a long time to load and generates multiple server requests. Using image sprites will reduce the number of server requests and save bandwidth.
+
+          <br/>
+
+          when you place the mouse pointer over the browser icons in non-sprite version for the first time the hover image will appear after some time, it happens because the hover image is loaded from the server on mouse hover, since the normal and hover images are two different images.
+          Whereas in sprite version, since all images are combined in a single image the hover image is displayed immediately on mouse hover that results in smooth hover effect.<br/><br/>
+          First of all, we will create the class .sprite that will load our sprite image. This is to avoid repetition, because all items share the same background-image.<br/><br/>
+          .sprite {
+          background: url("images/mySprite.png") no-repeat;
+        }<br/><br/>
+        Now, we must define a class for each item we want to display. For example, to display Internet Explorer icon form the image sprite the CSS code would be.
+        <br/><br/>
+        .ie {
+        width: 50px; /* Icon width */
+        height: 50px; /* Icon height */
+        display: inline-block; /* Display icon as inline block */
+        background-position: 0 -200px; /* Icon background position in sprite */
+      }
+
       <li>What are your favourite image replacement techniques and which do you use when?</li>
-      <li>How would you approach fixing browser-specific styling issues?</li>
+      CSS image replacement is a technique of replacing a text element (usually a header tag) with an image. An example of this would be including a logo on a page. You may want to use a &lt;h1&gt; tag and text for this for the accessibility and SEO benefits, but ideally you'd like to show your logo, not text.<br/><br/>
+      <h1>Technique #1</h1><br/>
+      &lt;h1 id="technique-one"&gt;<br/>
+      &lt;span>CSS-Tricks&lt;/span&gt;<br/>
+      &lt;/h1&gt;<br/><br/>
+      h1#technique-one {<br/>
+      width: 250px;<br/>
+      height: 25px;<br/>
+      background-image: url(logo.gif);<br/>
+    }<br/><br/>
+    h1#technique-one span {<br/>
+    display: none;<br/>
+  }<br/>
+  <img src="https://css-tricks.com/wp-content/uploads/2008/03/report-card-1.png" alt="">
+  <br/><br/>
+  <h1>Technique #8</h1>
+  &lt;h1 class="technique-eight"&gt;<br/>
+  &lt;span&gt;&lt;/span&gt;CSS-Tricks<br/>
+  &lt;/h1&gt;<br/><br/>
+  h1.technique-eight {<br/>
+  width: 350px; height: 75px;<br/>
+  position: relative;<br/>
+}<br/><br/>
+h1.technique-eight span {<br/>
+background: url("images/header-image.jpg");<br/>
+position: absolute;<br/>
+width: 100%;<br/>
+height: 100%;<br/>
+}<br/>
+<img src="https://css-tricks.com/wp-content/uploads/2008/03/report-card-8.png" alt="">
 
-      <li>How do you serve your pages for feature-constrained browsers?
-      </li>
-      <li>What techniques/processes do you use?</li>
-      <li>What are the different ways to visually hide content (and make it available only for screen readers)?</li>
+<li>How would you approach fixing browser-specific styling issues?</li>
+To target IE using conditional comments, just add this line to the >head&lt; tags of your HTML file:<br/><br/>
 
-      <li>Have you ever used a grid system, and if so, what do you prefer?</li>
+&lt;!--[if IE 6]&gt;&lt;link rel="stylesheet" href="http://mysite.com/path/to/ie6.css" type="text/css" media="screen, projection"&gt;&lt;![endif]--&gt; &lt;!--[if IE 7]&gt;&lt;link rel="stylesheet" href="http://mysite.com/path/to/ie7.css" type="text/css" media="screen, projection"&gt;&lt;![endif]--&gt;
 
-      <li>Have you used or implemented media queries or mobile specific layouts/CSS</li>
+<li>How do you serve your pages for feature-constrained browsers?
+</li>
 
-      <li>Are you familiar with styling SVG?</li>
+Progressive enhancement is a strategy for web design that emphasizes core webpage content first. This strategy then progressively adds more nuanced and technically rigorous layers of presentation and features on top of the content as the end-user's browser/internet connection allow.<br/><br/>
+Graceful degradation is the ability of a computer, machine, electronic system or network to maintain limited functionality even when a large portion of it has been destroyed or rendered inoperative. The purpose of graceful degradation is to prevent catastrophic failure.
 
-      <li>How do you optimize your webpages for print?</li>
+<li>What techniques/processes do you use?</li>
 
-      <li>What are some of the "gotchas" for writing efficient CSS?</li>
 
-      <li>What are the advantages/disadvantages of using CSS preprocessors?</li>
-      <li>Describe what you like and dislike about the CSS preprocessors you have used.</li>
-      <li>How would you implement a web design comp that uses non-standard fonts?</li>
-      <li>Explain how a browser determines what elements match a CSS selector.</li>
-      <li>Describe pseudo-elements and discuss what they are used for.</li>
-      <li>Explain your understanding of the box model and how you would tell the browser in CSS to render your layout in different box models.</li>
-      <li>What does * { box-sizing: border-box; } do? What are its advantages?</li>
-      <li>List as many values for the display property that you can remember.</li>
-      <li>What's the difference between inline and inline-block?</li>
-      <li>What's the difference between a relative, fixed, absolute and statically positioned element?</li>
-      <li>The 'C' in CSS stands for Cascading. How is priority determined in assigning styles (a few examples)? How can you use this system to your advantage?</li>
-      <li>What existing CSS frameworks have you used locally, or in production? How would you change/improve them?</li>
-      <li>Have you played around with the new CSS Flexbox or Grid specs?</li>
-      <li>How is responsive design different from adaptive design?</li>
-      <li>Have you ever worked with retina graphics? If so, when and what techniques did you use?</li>
-      <li>Is there any reason you'd want to use translate() instead of absolute positioning, or vice-versa? And why?</li>
-    </ul>
+<li>What are the different ways to visually hide content (and make it available only for screen readers)?</li>
+text-indent: -10000px;<br/><br/>
+This approach moves the content to the left 10000 pixels - thus off the visible screen. The actual value matters little, so long as it is positioned off-screen. Screen readers will still read text with this style. 
+
+
+<li>Have you ever used a grid system, and if so, what do you prefer?</li>
+Bootstrap, Materialize
+<li>Have you used or implemented media queries or mobile specific layouts/CSS</li>
+There is a special meta tag you can append into the document header which resets this in most Android and iPhone devices.
+
+<br/><br/>
+&lt;meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" /&gt;
+
+<br/>
+<br/>
+img { max-width: 100%; }
+<br/>
+<br/>
+Media Queries<br/>
+<br/>
+@media only screen<br/>
+and (min-device-width : 320px) <br/>
+and (max-device-width : 480px) {<br/>
+}<br/>
+
+
+<li>Are you familiar with styling SVG?</li>
+&lt;svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300px" height="300px" viewBox="0 0 300 300"&gt;
+&lt;polygon
+fill = "#FF931E"
+stroke = "#ED1C24"
+stroke-width = "5"
+points = "279.1,160.8 195.2,193.3 174.4,280.8   117.6,211.1 27.9,218.3 76.7,142.7 42.1,59.6 129.1,82.7 197.4,24.1 202.3,114 "/&gt;
+&lt;/svg&gt;<br/><br/>
+The fill, stroke and stroke-width attributes are presentation attributes.
+
+<li>How do you optimize your webpages for print?</li>
+1. Of course you have at least one stylesheet to control the layout of the page and formatting of the content, but do you have a stylesheet to control how your page will look like in print? Add the print style sheet, with the media attribute set to "print", at the end of the list of stylesheets in the header. This will allow you to create custom CSS classes applied only at the time of print. Make sure your structure CSS file is given a media attribute of "all."<br/><br/>
+2. Avoid Unnecessary HTML Tables<br/><br/>
+3. Know Which Portions Of The Page Don't Have Any Print Value<br/>
+.no-print   { display:none; }<br/><br/>
+4. Use Page Breaks<br/><br/>
+.page-break { page-break-before: always; } /* put this class into your main.css file with "display:none;" */<br/><br/>
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce eu felis. Curabitur sit amet magna. Nullam aliquet. Aliquam ut diam...<br/>
+&lt;div class="page-break"&gt;&lt;/div&gt;<br/>
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit....
+
+<li>What are some of the "gotchas" for writing efficient CSS?</li><br/>
+Primarily about efficient css selectors<br/><br/>
+
+- Avoid key selectors that match large numbers of elements (tag and universal selectors)<br/>
+
+- Prefer class and ID selectors over tag selectors<br/>
+
+- Avoid redundant selectors<br/>
+
+- Preferably don't use * (universal selector)<br/>
+
+
+*And like any other code, try group and reuse common properties.<br/>
+
+<li>What are the advantages/disadvantages of using CSS preprocessors?</li>
+Advantages<br/>
+- better oranization from nesting them<br/>
+- ability to define variables and mixins<br/>
+- have mathematical functions<br/>
+- joining multiple files<br/>
+- in some cases, cleaner syntaxes<br/><br/>
+
+Disadvantages<br/>
+- mainly for designers not comfortable on the command line or programming concepts
+<li>Describe what you like and dislike about the CSS preprocessors you have used.</li>
+
+<li>How would you implement a web design comp that uses non-standard fonts?</li>
+using @font-face<br/>
+@font-face is a css rule which allows you to download a particular font from your server to render a webpage if the user hasn't got that font installed. This means that web designers will no longer have to adhere to a particular set of "web safe" fonts that the user has pre-installed on their computer.<br/><br/>
+using font service link<br/>
+&lt;link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'&gt;
+
+<li>Explain how a browser determines what elements match a CSS selector.</li>
+One of the important things to understand about how browsers read your CSS selectors, is that they read them from right to left. That means that in the selector ul > li a[title=”home”] the first thing thing interpreted is a[title=”home”]. This first part is also referred to as the “key selector” in that ultimately, it is the element being selected.
+<br/>
+<li>Describe pseudo-elements and discuss what they are used for.</li>
+A CSS pseudo-class is a keyword added to selectors that specifies a special state of the element to be selected. For example :hover will apply a style when the user hovers over the element specified by the selector.<br/><br/>
+:link - Perhaps the most confusion-causing link-related pseudo selector. Aren't all &lt;a&gt; links? Well not if they don't have an href attribute. This selects only those that do, thus is essentially the same as a[href]. This selector will become a lot more useful should any-element linking become reality.<br/><br/>
+:hover - When the mouse cursor rolls over a link, that link is in it's hover state and this will select it.
+<br/><br/>
+:active - Selects the link while it is being activated (being clicked on or otherwise activated). For example, for the "pressed" state of a button-style link or to make all links feel more button-like.<br/><br/>
+:focus - Defining hover styles for links is great, but it doesn't help out those who used keyboard navigation to get to the link. :focus will select links that are the current focus of the keyboard. This is not limited to links, but can be used (and really should be used) on inputs and textareas as well. Some would tell you to define a :focus style for anything that has a :hover style.
+<br/><br/>
+:visited - Selects links that have already been visited by the current browser.
+
+<li>Explain your understanding of the box model and how you would tell the browser in CSS to render your layout in different box models.</li>
+All HTML elements can be considered as boxes. The CSS box model is essentially a box that wraps around HTML elements, and it consists of: margins, borders, padding, and the actual content.
+
+When you set the width and height properties of an element with CSS, you just set the width and height of the content area. To calculate the full size of an element, you must also add the padding, borders and margins.
+<li>What does * { box-sizing: border-box; } do? What are its advantages?</li>
+box-sizing property:<br/>
+
+content-box – (default) element width doesn’t include padding and border<br/>
+border-box –  element width includes padding and borders
+<li>List as many values for the display property that you can remember.</li>
+none<br/>
+inherit<br/>
+inline<br/>
+inline-block<br/>
+block<br/>
+table<br/>
+table-cell<br/>
+<li>What's the difference between inline and inline-block?</li>
+Inline:<br/><br/>
+
+respects left and right margins and padding<br/>
+doesn’t respect top and bottom  margins and padding<br/>
+doesn’t have a width and height<br/>
+allow other elements to sit to its left and right<br/><br/>
+Block:<br/>
+
+respects all margins and paddings<br/>
+respects width and height<br/>
+line break after<br/><br/>
+Inline-block:<br/>
+
+placed like an inline element (on the same line) but behaves as block<br/>
+respects all margins and paddings<br/>
+respects width and height<br/>
+allow other elements to sit to its left and right<br/>
+
+<li>What's the difference between a relative, fixed, absolute and statically positioned element?</li>
+Absolute<br/>
+
+displayed on the page in relation to the document, or a parent element with a positioning different from static<br/>
+using top, left, bottom and right CSS properties, exact position can be specified<br/><br/>
+Fixed<br/>
+
+position in relation to the browser window<br/>
+allows to display toolbars, buttons or navigation menus, which are anchored at a fixed position and scroll with the page<br/><br/>
+Relative<br/>
+
+moves an element from its normal position with the top, left, bottom and right CSS properties<br/><br/>
+Static
+<br/>
+means that every element is positioned in the natural order it is added to the page
+
+<li>The 'C' in CSS stands for Cascading. How is priority determined in assigning styles (a few examples)? How can you use this system to your advantage?</li>
+CSS priority is determined by specificity and inheritance.<br/>
+
+Specificity: ID → class, psuedo-class → element, psudo-element<br/><br/>
+Inheritence: specified value → computed value → used value → actual value
+
+<li>What existing CSS frameworks have you used locally, or in production? How would you change/improve them?</li>
+Bootstrap, Materialize
+<li>Have you played around with the new CSS Flexbox or Grid specs?</li>
+Flexbox a bit
+<li>How is responsive design different from adaptive design?</li>
+Adaptive Web Design. Adaptive web design is different from responsive design in that there isn't one layout that always changes. Instead, there are several distinct layouts for multiple screen sizes. And the layout used depends on the screen size used.
+<li>Have you ever worked with retina graphics? If so, when and what techniques did you use?</li>
+
+<li>Is there any reason you'd want to use translate() instead of absolute positioning, or vice-versa? And why?</li>
+Yes, translate do not cause the browser to trigger repaint and layout and instead only acts on the compositor. I tend to only ever use translate/transform nowadays, and only using absolute positioning for an elements initial position. I'll then translate it from that initial position for better performance.
+</ul>
 
 
 
@@ -116,125 +434,171 @@
 
 <ul>
 
-<li>Explain event delegation</li>
-<li>Explain how this works in JavaScript</li>
-<li>Explain how prototypal inheritance works</li>
-<li>What do you think of AMD vs CommonJS?</li>
-<li>Explain why the following doesn't work as an IIFE: function foo(){ }();.</li>
-<li>What needs to be changed to properly make it an IIFE?</li>
-<li>What's the difference between a variable that is: null, undefined or undeclared?</li>
-<li>How would you go about checking for any of these states?</li>
-<li>What is a closure, and how/why would you use one?</li>
-<li>What's a typical use case for anonymous functions?</li>
-<li>How do you organize your code? (module pattern, classical inheritance?)</li>
-<li>What's the difference between host objects and native objects?</li>
-<li>Difference between: function Person(){}, var person = Person(), and var person = new Person()?</li>
-<li>What's the difference between .call and .apply?</li>
-<li>Explain Function.prototype.bind.</li>
-<li>When would you use document.write()?</li>
-<li>What's the difference between feature detection, feature inference, and using the UA string?</li>
-<li>Explain AJAX in as much detail as possible.</li>
-<li>Explain how JSONP works (and how it's not really AJAX).</li>
-<li>Have you ever used JavaScript templating?</li>
-<li>If so, what libraries have you used?</li>
-<li>Explain "hoisting".</li>
-<li>Describe event bubbling.</li>
-<li>What's the difference between an "attribute" and a "property"?</li>
-<li>Why is extending built-in JavaScript objects not a good idea?</li>
-<li>Difference between document load event and document ready event?</li>
-<li>What is the difference between == and ===?</li>
-<li>Explain the same-origin policy with regards to JavaScript.</li>
+  <li>Explain event delegation</li>
 
-<li>Make this work:
-duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]</li>
-<li>Why is it called a Ternary expression, what does the word "Ternary" indicate?</li>
-<li>What is "use strict";? what are the advantages and disadvantages to using it?</li>
-<li>Create a for loop that iterates up to 100 while outputting "fizz" at multiples of 3, "buzz" at multiples of 5 and "fizzbuzz" at multiples of 3 and 5</li>
-<li>Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?</li>
-<li>Why would you use something like the load event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?</li>
-<li>Explain what a single page app is and how to make one SEO-friendly.</li>
-<li>What is the extent of your experience with Promises and/or their polyfills?</li>
-<li>What are the pros and cons of using Promises instead of callbacks?</li>
-<li>What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?</li>
-</ul>
+  <li>Explain how this works in JavaScript</li>
 
-<h1>TESTING QUESTIONS</h1>
+  <li>Explain how prototypal inheritance works</li>
 
-<ul>
-  
-<li>What are some advantages/disadvantages to testing your code?</li>
-<li>What tools would you use to test your code's functionality?</li>
-<li>What is the difference between a unit test and a functional/integration test?</li>
-<li>What is the purpose of a code style linting tool?</li>
-</ul>
+  <li>What do you think of AMD vs CommonJS?</li>
 
-<h1>Performance Questions:</h1>
+  <li>Explain why the following doesn't work as an IIFE: function foo(){ }();.</li>
 
-<ul>
- <li> What tools would you use to find a performance bug in your code?</li>
-<li>What are some ways you may improve your website's scrolling performance?</li>
-<li>Explain the difference between layout, painting and compositing.</li>
-</ul>
+  <li>What needs to be changed to properly make it an IIFE?</li>
 
-<h1>Network Questions:</h1>
+  <li>What's the difference between a variable that is: null, undefined or undeclared?</li>
 
-<ul>
-<li>Traditionally, why has it been better to serve site assets from multiple domains?</li>
-<li>Do your best to describe the process from the time you type in a website's URL to it finishing loading on your screen.</li>
-<li>What are the differences between Long-Polling, Websockets and Server-Sent Events?</li>
-<li>Explain the following request and response headers:</li>
-<ul>
+  <li>How would you go about checking for any of these states?</li>
 
-<li>Diff. between Expires, Date, Age and If-Modified-...</li>
-<li>Do Not Track</li>
-<li>Cache-Control</li>
-<li>Transfer-Encoding</li>
-<li>ETag</li>
-<li>X-Frame-Options</li>
-</ul>
-<li>What are HTTP actions? List all HTTP actions that you know, and explain them.</li>
+  <li>What is a closure, and how/why would you use one?</li>
 
-</ul>
+  <li>What's a typical use case for anonymous functions?</li>
+
+  <li>How do you organize your code? (module pattern, classical inheritance?)</li>
+
+  <li>What's the difference between host objects and native objects?</li>
+
+  <li>Difference between: function Person(){}, var person = Person(), and var person = new Person()?</li>
+
+  <li>What's the difference between .call and .apply?</li>
+
+  <li>Explain Function.prototype.bind.</li>
+
+  <li>When would you use document.write()?</li>
+
+  <li>What's the difference between feature detection, feature inference, and using the UA string?</li>
+
+  <li>Explain AJAX in as much detail as possible.</li>
+
+  <li>Explain how JSONP works (and how it's not really AJAX).</li>
+
+  <li>Have you ever used JavaScript templating?</li>
+
+  <li>If so, what libraries have you used?</li>
+
+  <li>Explain "hoisting".</li>
+
+  <li>Describe event bubbling.</li>
+
+  <li>What's the difference between an "attribute" and a "property"?</li>
+
+  <li>Why is extending built-in JavaScript objects not a good idea?</li>
+
+  <li>Difference between document load event and document ready event?</li>
+
+  <li>What is the difference between == and ===?</li>
+
+  <li>Explain the same-origin policy with regards to JavaScript.</li>
+
+  <li>Make this work:
+    duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]</li>
+
+    <li>Why is it called a Ternary expression, what does the word "Ternary" indicate?</li>
+
+    <li>What is "use strict";? what are the advantages and disadvantages to using it?</li>
+
+    <li>Create a for loop that iterates up to 100 while outputting "fizz" at multiples of 3, "buzz" at multiples of 5 and "fizzbuzz" at multiples of 3 and 5</li>
+
+    <li>Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?</li>
+
+    <li>Why would you use something like the load event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?</li>
+
+    <li>Explain what a single page app is and how to make one SEO-friendly.</li>
+
+    <li>What is the extent of your experience with Promises and/or their polyfills?</li>
+
+    <li>What are the pros and cons of using Promises instead of callbacks?</li>
+
+    <li>What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?</li>
+
+  </ul>
+
+  <h1>TESTING QUESTIONS</h1>
+
+  <ul>
+
+    <li>What are some advantages/disadvantages to testing your code?</li>
+
+    <li>What tools would you use to test your code's functionality?</li>
+
+    <li>What is the difference between a unit test and a functional/integration test?</li>
+
+    <li>What is the purpose of a code style linting tool?</li>
+
+  </ul>
+
+  <h1>Performance Questions:</h1>
+
+  <ul>
+    <li> What tools would you use to find a performance bug in your code?</li>
+
+    <li>What are some ways you may improve your website's scrolling performance?</li>
+    <li>Explain the difference between layout, painting and compositing.</li>
+
+  </ul>
+
+  <h1>Network Questions:</h1>
+
+  <ul>
+    <li>Traditionally, why has it been better to serve site assets from multiple domains?</li>
+
+    <li>Do your best to describe the process from the time you type in a website's URL to it finishing loading on your screen.</li>
+
+    <li>What are the differences between Long-Polling, Websockets and Server-Sent Events?</li>
+
+    <li>Explain the following request and response headers:</li>
+    <ul>
+
+      <li>Diff. between Expires, Date, Age and If-Modified-...</li>
+      <li>Do Not Track</li>
+      <li>Cache-Control</li>
+      <li>Transfer-Encoding</li>
+      <li>ETag</li>
+      <li>X-Frame-Options</li>
+    </ul>
+    <li>What are HTTP actions? List all HTTP actions that you know, and explain them.</li>
+
+  </ul>
 
 
-<h1>Coding Questions:</h1>
+  <h1>Coding Questions:</h1>
 
-<ul>
-<li>Question: What is the value of foo?var foo = 10 + '20';</>
-<li>Question: How would you make this work? <br />
-add(2, 5); // 7 <br />
-add(2)(5); // 7</li>
-<li>Question: What value is returned from the following statement?<br />
-"i'm a lasagna hog".split("").reverse().join("");</li>
-<li>Question: What is the value of window.foo?<br />
-( window.foo || ( window.foo = "bar" ) );</br>
-<li>Question: What is the outcome of the two alerts below?<br />
-var foo = "Hello";<br />
-(function() {<br />
-  var bar = " World";<br />
-  alert(foo + bar);<br />
-})();<br />
-alert(foo + bar);<br />
-<li>Question: What is the value of foo.length?<br />
-var foo = [];<br />
-foo.push(1);<br />
-foo.push(2);</li>
-<li>Question: What is the value of foo.x?<br />
-var foo = {n: 1};<br />
-var bar = foo;<br />
-foo.x = foo = {n: 2};</li>
-</ul>
+  <ul>
+    <li>Question: What is the value of foo?var foo = 10 + '20';</>
+      <li>Question: How would you make this work? <br />
+        add(2, 5); // 7 <br />
+        add(2)(5); // 7</li>
+        <li>Question: What value is returned from the following statement?<br />
+          "i'm a lasagna hog".split("").reverse().join("");</li>
+          <li>Question: What is the value of window.foo?<br />
+            ( window.foo || ( window.foo = "bar" ) );</br>
+            <li>Question: What is the outcome of the two alerts below?<br />
+              var foo = "Hello";<br />
+              (function() {<br />
+              var bar = " World";<br />
+              alert(foo + bar);<br />
+            })();<br />
+            alert(foo + bar);<br />
+            <li>Question: What is the value of foo.length?<br />
+              var foo = [];<br />
+              foo.push(1);<br />
+              foo.push(2);</li>
+              <li>Question: What is the value of foo.x?<br />
+                var foo = {n: 1};<br />
+                var bar = foo;<br />
+                foo.x = foo = {n: 2};</li>
+              </ul>
 
-<h1>Fun Questions:</h1>
+              <h1>Fun Questions:</h1>
 
-<ul>
-<li>  What's a cool project that you've recently worked on?</li>
-<li>What are some things you like about the developer tools you use?</li>
-<li>Do you have any pet projects? What kind?</li>
-<li>What's your favorite feature of Internet Explorer?</li>
-<li>How do you like your coffee?</li>
-</ul>
+              <ul>
+                <li>  What's a cool project that you've recently worked on?</li>
+                <li>What are some things you like about the developer tools you use?</li>
+                <li>Do you have any pet projects? What kind?</li>
+                <li>What's your favorite feature of Internet Explorer?</li>
+                <li>How do you like your coffee?</li>
+              </ul>
 
-    <script type="text/javascript" src="script.js"></script>
-  </body>
-  </html>
+              <script type="text/javascript" src="script.js"></script>
+            </body>
+            </html>
