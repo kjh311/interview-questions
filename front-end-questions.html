@@ -59,7 +59,7 @@
         Graceful degradation is the ability of a computer, machine, electronic system or network to maintain limited functionality even when a large portion of it has been destroyed or rendered inoperative. The purpose of graceful degradation is to prevent catastrophic failure. 
         <li>How would you optimize a website's assets/resources?</li>
 
-        Lower file size of images/create a sprite. 
+        Lower file size of images/create a sprite. File concatenation, file compression, CDN Hosting, offloading assets, re-organizing and refining code, etc.
 
         <li>How many resources will a browser download from a given domain at a time?
           What are the exceptions?</li>
@@ -105,7 +105,22 @@
           <li>What does a doctype do?</li>
           The doctype, which must appears at the very begining of your markup, defines what type of markup you will be using, eg HTML5 or XHTML, etc.  You can also inform robots about things like the main language in use, such as lang=”en”.
 
+<li>What is the purpose of 'aside' tag in HTML5?</li>
+This tag represents a piece of content that is only slightly related to the rest of the page.
+
+           <li>What is image map?</li>
+
+
+ 
+Image map lets you link to many different web pages using a single image. You can define shapes in images that you want to make part of an image mapping.
+
+
+<li>What is the advantage of collapsing white space?</li>
+
+White spaces are blank sequence of space characters, which is actually treated as a single space character in html. Because the browser collapses multiple space into a single space, you can indent lines of text without worrying about multiple spaces. This enables you to organize the html code into a much more readable format.
+
           <li>What's the difference between standards mode and quirks mode?</li>
+
 
           Quirks mode also known as Compatibility Mode - means your page is running without a document type declared(this is old school, so this is most likely not needed anymore) The whole point of quirks mode is that it's a compatibility mode for IE5. This means that in addition to changing the layout mode, it also switches off most of the browser features that have been invented since IE5. In quirks mode, the web browser attempts to render/make code based on a ‘best-guess’, this includes a generous interpretation of code that may be non-standard or poorly-formed. if you don't declare a doctype, the browser will have to guess what version of HTML/CSS you're running Quirks mode enables older HTML documents to still ‘work its a technique used by web browsers to maintain backward compatibility with older webpages.
 
@@ -123,8 +138,9 @@
           <li>What are data- attributes good for?</li>
 
           The data-* attributes gives us the ability to embed custom data attributes on all HTML elements. The stored (custom) data can then be used in the page's JavaScript to create a more engaging user experience (without any Ajax calls or server-side database queries).
-
-          <li>Consider HTML5 as an open web platform. What are the building blocks of HTML5?</li>
+<br/><br/>
+          &lt;div id="myDiv" data-user="jsDude" data-list-size="5" data-maxage="180"&gt;&lt;/div&gt;
+          
           They’re great for passing contextual data to, for example, JS event handler.
 
           The data-* attributes gives us the ability to embed custom data attributes on all HTML elements. The stored (custom) data can then be used in the page's JavaScript to create a more engaging user experience (without any Ajax calls or server-side database queries).
@@ -142,11 +158,11 @@
 
           The async attribute is a boolean attribute.<br/>
 
-      When present, it specifies that the script will be executed asynchronously as soon as it is available.<br/><br/>
+          When present, it specifies that the script will be executed asynchronously as soon as it is available.<br/><br/>
 
-      The defer attribute is a boolean attribute.<br/>
+          The defer attribute is a boolean attribute.<br/>
 
-When present, it specifies that the script is executed when the page has finished parsing.
+          When present, it specifies that the script is executed when the page has finished parsing.
 
           <li>Why is it generally a good idea to position CSS &lt;link&gt;s between &lt;head&gt;&lt;/head&gt; and JS &lt;script&gt;s just before &lt;/body&gt;? Do you know any exceptions?</li>
 
