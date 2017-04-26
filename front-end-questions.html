@@ -451,30 +451,131 @@ Yes, translate do not cause the browser to trigger repaint and layout and instea
 <ul>
 
   <li>Explain event delegation</li>
+  Event delegation refers to the process of using event propagation (bubbling) to handle events at a higher level in the DOM than the element on which the event originated. It allows us to attach a single event listener for elements that exist now or in the future. <br/><br/>
+
+  In traditional event handling you add or remove event handlers from each element as needed. However, event handlers can potentially cause of memory leaks and performance degradation — the more you have, the greater the risk. JavaScript event delegation is a simple technique by which you add a single event handler to a parent element in order to avoid having to add event handlers to multiple child elements.
+  <br/>
+  <br/>
+  There are less event handlers to setup and reside in memory. This is the big one; better performance and less crashing.<br/>
+There’s no need to re-attach handlers after a DOM update. If your page content is generated dynamically, via Ajax for example, you don’t need to add and remove event handlers as elements are loaded or unloaded.
 
   <li>Explain how this works in JavaScript</li>
+  Event delegation makes use of two often overlooked features of JavaScript events: event bubbling and the target element. When an event is triggered on an element, for example a mouse click on a button, the same event is also triggered on all of that element’s ancestors. This process is known as event bubbling; the event bubbles up from the originating element to the top of the DOM tree. The target element of any event is the originating element, the button in our example, and is stored in a property of the event object. Using event delegation it’s possible to add an event handler to an element, wait for an event to bubble up from a child element and easily determine from which element the event originated.
 
   <li>Explain how prototypal inheritance works</li>
+  Prototype-based programming is a style of object-oriented programming in which behaviour reuse (known as inheritance) is performed via a process of reusing existing objects via delegation that serve as prototypes. This model can also be known as prototypal, prototype-oriented, classless, or instance-based programming.<br/>
+  The object function untangles JavaScript's constructor pattern, achieving true prototypal inheritance. It takes an old object as a parameter and returns an empty new object that inherits from the old one. If we attempt to obtain a member from the new object, and it lacks that key, then the old object will supply the member. Objects inherit from objects. What could be more object oriented than that?
 
   <li>What do you think of AMD vs CommonJS?</li>
+  Asynchronous Module Definition (AMD) AMD was born out of a group of developers that were displeased with the direction adopted by CommonJS. In fact, AMD was split from CommonJS early in its development. The main difference between AMD and CommonJS lies in its support for asynchronous module loading.
 
   <li>Explain why the following doesn't work as an IIFE: function foo(){ }();.</li>
+  IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined.<br/>
+  This is a function definition, it defines foo. But it’s not a function expression - that is, it’s not understood by the JS parser to actually call a function.<br/>
+  In order to prep the parser that we're actually dealing with a function expression we have to wrap things up in () like so:
+<br/><br/>
+
+(<br/>
+  function foo(){<br/>
+  }()<br/>
+);
+
+
 
   <li>What needs to be changed to properly make it an IIFE?</li>
+   In order to prep the parser that we're actually dealing with a function expression we have to wrap things up in () like so:
+<br/><br/>
+
+(<br/>
+  function foo(){<br/>
+  }()<br/>
+);
+
 
   <li>What's the difference between a variable that is: null, undefined or undeclared?</li>
+  In JavaScript null is "nothing". It is supposed to be something that doesn't exist.
+<br/>
+Unfortunately, in JavaScript, the data type of null is an object.
+<br/><br/>
+The undefined property indicates that a variable has not been assigned a value.
+<br/><br/>
+A variable is undeclared when it does not use the var keyword. It gets created on the global object (that is, the window), thus it operates in a different space as the declared variables.
 
   <li>How would you go about checking for any of these states?</li>
+  The typeof operator returns a string indicating the type of the unevaluated operand.
 
   <li>What is a closure, and how/why would you use one?</li>
 
+  Global variables can be made local (private) with closures.
+  <br/>
+  <br/>
+  var add = (function () {<br/>
+    var counter = 0;<br/>
+    return function () {return counter += 1;}<br/>
+})();<br/>
+<br/>
+add();<br/>
+add();<br/>
+add();<br/><br/>
+// the counter is now 3<br/><br/>
+Example Explained<br/>
+The variable add is assigned the return value of a self-invoking function.<br/>
+
+The self-invoking function only runs once. It sets the counter to zero (0), and returns a function expression.<br/>
+
+This way add becomes a function. The "wonderful" part is that it can access the counter in the parent scope.<br/>
+
+This is called a JavaScript closure. It makes it possible for a function to have "private" variables.<br/>
+
+The counter is protected by the scope of the anonymous function, and can only be changed using the add function.<br/>
+
+
+
   <li>What's a typical use case for anonymous functions?</li>
+  Anonymous functions are created at runtime. The function operator can be used anywhere that it's valid to use an expression. For example you can use the function operator when a variable is being assigned, when a parameter is being passed to a function or in a return statement.
+  <br/>
+  I would say that the most typical use for anonymous functions in JS is to pass them as arguments to other functions. Take the setTimeout function for example:<br/>
+  setTimeout(function() {<br/>
+  alert('hello'); <br/>
+}, 1000);<br/><br/>
+Another popular use case (especially for frameworks) is to create closures with anonymous functions:<br/><br/>
+(function() {<br/>
+  alert('foo'); <br/>
+})();
 
   <li>How do you organize your code? (module pattern, classical inheritance?)</li>
 
   <li>What's the difference between host objects and native objects?</li>
+native object<br/><br/>
+
+object in an ECMAScript implementation whose semantics are fully defined by this specification rather than by the host environment.<br/><br/>
+
+NOTE Standard native objects are defined in this specification. Some native objects are built-in; others may be constructed during the course of execution of an ECMAScript program.<br/><br/>
+
+
+host object<br/><br/>
+
+object supplied by the host environment to complete the execution environment of ECMAScript.<br/>
+
+NOTE Any object that is not native is a host object.
+A few examples:<br/><br/>
+
+Native objects: Object (constructor), Date, Math, parseInt, eval, string methods like indexOf and replace, array methods, ...<br/>
+
+Host objects (assuming browser environment): window, document, location, history, XMLHttpRequest, setTimeout, getElementsByTagName, querySelectorAll
 
   <li>Difference between: function Person(){}, var person = Person(), and var person = new Person()?</li>
+  1. function Person() {} <br/><br/>
+Declares a function (but does not execute it).<br/>
+It will usually have some code between the curly brackets.
+<br/><br/>
+2. var person = Person()<br/>
+Declares a variable (person), invokes a function (Person) and sets the value of person to the return of the function.
+<br/><br/>
+3. var person = new Person()<br/>
+Creates a new instance of an object based on the Person function. So the variable (person) is now an Object, not just a string or a number.
+<br/><br/>
+Objects can contain indexed strings, numbers and even functions, and you can add more stuff to them, they're pretty awesome. The whole concept of Object Oriented Programming (OOP) is based on this.
 
   <li>What's the difference between .call and .apply?</li>
 
