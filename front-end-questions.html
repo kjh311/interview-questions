@@ -13,6 +13,11 @@
   <br />
   <br />
 
+  <a href="http://hangar.herokuapp.com/javascript/guide" title="Javascript Guide"></a>
+   <br />
+  <br />
+
+
   <h2>GENERAL QUESTIONS:</h2>
 
 
@@ -580,23 +585,212 @@ Objects can contain indexed strings, numbers and even functions, and you can add
 
   <li>What's the difference between .call and .apply?</li>
 
+  var person1 = {name: 'Marvin', age: 42, size: '2xM'};<br/>
+var person2 = {name: 'Zaphod', age: 42000000000, size: '1xS'};<br/>
+<br/>
+var sayHello = function(){<br/>
+    alert('Hello, ' + this.name);<br/>
+};<br/>
+
+var sayGoodbye = function(){<br/>
+    alert('Goodbye, ' + this.name);<br/>
+};<br/><br/>
+
+writing the following code:
+<br/><br/>
+sayHello();<br/>
+sayGoodbye();<br/><br/>
+will give errors<br/>This is because both functions rely on their scope for the this.name data, and calling them without explicit scope will just run them in the scope of the current window.<br/><br/>
+
+So how do we scope them? Try this:<br/><br/>
+
+sayHello.call(person1);<br/>
+sayGoodbye.call(person2);<br/><br/>
+
+sayHello.apply(person1);<br/>
+sayGoodbye.apply(person2);<br/><br/>
+
+All four of these lines do exactly the same thing. The run sayHello or sayGoodbye in the scope of either person1 or person2.<br/><br/>
+Both call and apply perform very similar functions: they execute a function in the context, or scope, of the first argument that you pass to them. Also, they're both functions that can only be called on other functions.<br/><br/>
+
+var say = function(greeting){<br/>
+    alert(greeting + ', ' + this.name);<br/>
+};<br/><br/>
+
+say.call(person1, 'Hello');<br/>
+say.call(person2, 'Goodbye');<br/><br/>
+So that's call for you. It runs the function in the context of the first argument, and subsequent arguments are passed in to the function to work with.  <br/><br/>
+The limitations of call quickly become apparent when you want to write code that doesn't (or shouldn't) know the number of arguments that the functions need… like a dispatcher.<br/><br/>
+
+var dispatch = function(person, method, args){<br/>
+    method.apply(person, args);<br/>
+};<br/><br/>
+
+dispatch(person1, say, ['Hello']);<br/>
+dispatch(person2, update, ['Slarty', 200, '1xM']);<br/><br/>
+So that's where apply comes in - the second argument needs to be an array, which is unpacked into arguments that are passed to the called function.
+<br/><br/>
+So that's the difference between call and apply. Both can be called on functions, which they run in the context of the first argument. In call the subsequent arguments are passed in to the function as they are, while apply expects the second argument to be an array that it unpacks as arguments for the called function.
+
   <li>Explain Function.prototype.bind.</li>
+
+  the problem of how to keep the context of this within another function, then you might not realize that what you actually need is Function.prototype.bind().<br/><br/>
+
+  var foo = {<br/>
+    x: 3<br/>
+}<br/><br/>
+
+var bar = function(){<br/>
+    console.log(this.x);<br/>
+}<br/><br/>
+
+bar(); // undefined<br/><br/>
+
+var boundFunc = bar.bind(foo);<br/><br/>
+
+boundFunc(); // 3<br/><br/>
 
   <li>When would you use document.write()?</li>
 
+  document.write() shouldn’t be used after the page has loaded to change the content as it will overwrite the entire page 
+  <br/>
+  <br/>
+  It seems that the only “approved” time to use document.write() is for third party code to be included (such as ads or Google Analytics). Since document.write() is always available (mostly) it is a good choice for third party vendors to use it to add their scripts. They don’t know what environment you're using, if jQuery is or isn’t available, or what your onload events are. And with document.write() they don’t have to.
+
   <li>What's the difference between feature detection, feature inference, and using the UA string?</li>
+
+  What is feature detection? <br/> <br/>
+
+When you check if a certain feature exists, that’s feature detection. <br/> <br/>
+
+We need to write code that checks if features exist in JS since different browsers have different implementations, something like this: <br/> <br/>
+
+var text; <br/>
+if(typeof(Text) === "function"){ <br/>
+    text = new Text('Oh, how quick that fox was!'); <br/>
+} else { <br/>
+    text = 'Oh, how quick that fox was!'; <br/>
+} <br/>
+
+That means you can be confident you've covered all of your bases with different browser implementations. <br/> <br/>
+
+
+What is feature inference?<br/><br/>
+
+When you make an assumption that because one feature is present (or not) another one will also be present (or not).<br/><br/>
+
+Chrome implements the Text function. I also know Chrome doesn’t have applyElement like IE does. So I'll write code like...<br/><br/>
+
+if(typeof applyElement != 'undefined') {<br/>
+    // now I know I'm not in IE, I'll just assume Text is available<br/>
+    text = new Text('Oh, how quick that fox was!');<br/>
+}<br/><br/>
+
+But oops! Someone looked at that code in Firefox which doesn’t implement applyElement or Text! They got an error :(<br/><br/>
+
+So that’s the problem. Since you're not checking for the feature you're using you're more likely to have inconsistencies. Also, if in the future one of the browsers changes what they implement all your assumptions will be inacurate.
+<br/><br/>
+What is the UA string?<br/><br/>
+
+“UA” stands for user agent, which means the browser (and a whole lot of other stuff). Mine looks like this:<br/>
+
+
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71
+<br/><br/>
+(You can find your user string at whatsmyuseragent.com.)<br/><br/>
+
+But you can see in there (at the end) it says what browser I’m on. So it would be possible to check for a specific version of Chrome by “sniffing” the user agent string. This is generally considered bad practice (but seems to be slightly better practice than feature inference).<br/><br/>
+
+Just like with feature inference, if you use the UA string you're making an assumption about how the string will be written, what changes are likely to happen in this particular version, and that your code will be able to handle any future changes.
 
   <li>Explain AJAX in as much detail as possible.</li>
 
+  AJAX stands for Asynchronous JavaScript And XML. In a nutshell, it is the use of the XMLHttpRequest object to communicate with servers. It can send and receive information in various formats, including JSON, XML, HTML, and text files.<br/><br/>
+  Update a web page without reloading the page<br/>
+Request data from a server - after the page has loaded<br/>
+Receive data from a server - after the page has loaded<br/>
+Send data to a server - in the background<br/>
+
   <li>Explain how JSONP works (and how it's not really AJAX).</li>
 
+What is JSONP?<br/><br/>
+If you spend some time thinking about how JavaScript operates in a browser, you will probably arrive at the realization that the policy does not seem to effect script tags. Specifically, how many of us get JQuery from the Google CDN or some other source that is not the same origin as our current page? (I hope that answer is “most”, by the way.)
+<br/><br/>
+That same logic, combined with some DOM knowledge, would probably lead you to experiment with loading other types of JavaScript, aside from a library, using script tags. Since JavaScript has a global scope, if you were to reference a function that could handle that data you could then link it with your application and do something interesting with it.
+<br/><br/>
+JSONP is born.
+<br/><br/>
+The idea of JSONP is actually pretty simple: toss a script tag into the DOM with a reference to a resource that returns JSON data. Have the server return said JSON with “padding” (the “P” part of JSONP) that executes a function wrapping the incoming data. In order for this to work properly, the server API must also support JSONP. Typically, the function name is named as the callback parameter. For example, let’s pretend you are accessing a service that returns JSON weather information that looks like:
+<br/><br/>
+http://www.weather.com/90210<br/><br/>
+Which returns JSON like:<br/><br/>
+
+{"zipCode": "90210","location": "Beverly Hills","high": "85 degrees","low": "55 degrees"}<br/><br/>
+Adding JSONP support would result in a URL that looks like:
+<br/><br/>
+http://www.weather.com/90210?callback=MyCallback
+And returns:<br/><br/>
+
+MyCallback({"zipCode": "90210","location": "Beverly Hills","high": "85 degrees","low": "55 degrees"});
+<br/><br/>
+
+An ajax call is an actual HTTP request from your client directly to a server. Ajax calls can be synchronous (blocking until they complete) or asynchronous. Because of same-origin security protections, ajax calls can only be made to the same server that the web page came from unless the target server explicitly allows a cross origin request using CORS.<br/><br/>
+
+JSONP calls are an interesting hack with the &lt;script&gt; tag that allows cross-origin communication. In a JSONP call, the client creates a script tag and puts a URL on it with an callback=xxxx query parameter on it. That script request (via the script tag insertion) is sent by the browser to the foreign server. The browser just thinks it's requesting some javascript code.
+<br/><br/>
+So, the two communication methods work completely differently. Only ajax calls can be synchronous. By the nature of the &lt;script&gt; tag insertion, JSONP calls are always asynchronous.
+<br/><br/>
+In an Ajax call, the response comes back in a ajax event handler.
+<br/><br/>
+In a JSONP call, the response comes when the returned Javascript calls a function of yours.
+<br/><br/>
+In some ways, JSONP is a security hole that bypasses the cross-origin security mechanism. But, you can only call servers that explicitly choose to support a JSONP-like mechanism so if a server doesn't want you to be able to call it cross-origin, it can prevent it by not supporting JSONP. You can't make regular ajax calls to these other servers.
+
   <li>Have you ever used JavaScript templating?</li>
+<br/><br/>
+  (i.e, mustache.js, Handlebars.js, )
+<br/><br/>
+  <a href="https://www.sitepoint.com/overview-javascript-templating-engines/" title="">More on templating</a>
 
   <li>If so, what libraries have you used?</li>
 
   <li>Explain "hoisting".</li>
 
+  JavaScript Declarations are Hoisted<br/>
+In JavaScript, a variable can be declared after it has been used.<br/>
+
+In other words; a variable can be used before it has been declared.<br/>
+Hoisting is JavaScript's default behavior of moving all declarations to the top of the current scope (to the top of the current script or the current function).
+<br/><br/>
+x = 5; // Assign 5 to x<br/><br/>
+
+elem = document.getElementById("demo"); // Find an element <br/>
+elem.innerHTML = x;                     // Display x in the element<br/>
+<br/><br/>
+var x; // Declare x
+<br/><br/>
+only the declaration (var x) , not the initialization (x = 5)  is hoisted to the top.
+
   <li>Describe event bubbling.</li>
+  Bubbling<br/>
+
+The bubbling principle is simple.<br/>
+
+When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.<br/>
+<br/><br/>
+Let’s say, we have 3 nested elements FORM > DIV > P with a handler on each of them:<br/><br/>
+
+
+
+&lt;form onclick="alert('form')"&gt;FORM<br/>
+  &lt;div onclick="alert('div')"&gt;DIV<br/>
+    &lt;p onclick="alert('p')"&gt;P&lt;/p&gt;<br/>
+  &lt;/div&gt;<br/>
+&lt;/form&gt;<br/><br/>
+
+So if we click on &lt;p&gt;, then we’ll see 3 alerts: p → div → form.<br/><br/>
+
+The process is called “bubbling”, because events “bubble” from the inner element up through parents like a bubble in the water.<br/>
 
   <li>What's the difference between an "attribute" and a "property"?</li>
 
