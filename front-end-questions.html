@@ -8,7 +8,14 @@
 </head>
 <body>
 
+
+
   <h1><a href="index.html" title="">HOME</a></h1>
+
+  <h3><a  href="#general">General Questions</a></h3>
+   <h3><a  href="#html">HTML Questions</a></h3>
+    <h3><a  href="#css">CSS Questions</a></h3>
+     <h3><a  href="#js">Javascript Questions</a></h3>
 
   <br/>
   <br/>
@@ -44,7 +51,7 @@
 
 
   <h2>GENERAL QUESTIONS:</h2>
-
+<a name="general"></a>
 
 
   <ul>
@@ -129,6 +136,8 @@
 
         </ul>
 
+
+<a name="html"></a>
         <h1>HTML QUESTIONS:</h1>
 
         <ul>
@@ -206,6 +215,8 @@ White spaces are blank sequence of space characters, which is actually treated a
 
         </ul>
 
+
+<a name="css"></a>
         <h1>CSS QUESTIONS:</h1>
 
         <ul>
@@ -475,7 +486,7 @@ Yes, translate do not cause the browser to trigger repaint and layout and instea
 </ul>
 
 
-
+<a name="js"></a>
 <h1>JS QUESTIONS</h1>
 
 <ul>
@@ -495,6 +506,57 @@ There’s no need to re-attach handlers after a DOM update. If your page content
   <li>Explain how prototypal inheritance works</li>
   Prototype-based programming is a style of object-oriented programming in which behaviour reuse (known as inheritance) is performed via a process of reusing existing objects via delegation that serve as prototypes. This model can also be known as prototypal, prototype-oriented, classless, or instance-based programming.<br/>
   The object function untangles JavaScript's constructor pattern, achieving true prototypal inheritance. It takes an old object as a parameter and returns an empty new object that inherits from the old one. If we attempt to obtain a member from the new object, and it lacks that key, then the old object will supply the member. Objects inherit from objects. What could be more object oriented than that?
+
+
+
+  <br/>
+  <br/>
+  // Declaring our Animal object<br/>
+var Animal = function () {<br/>
+<br/>
+    this.name = 'unknown';<br/>
+<br/>
+    this.getName = function () {<br/>
+        return this.name;<br/>
+    }<br/>
+<br/>
+    return this;<br/>
+};<br/>
+<br/>
+// Declaring our Dog object<br/>
+var Dog = function () {<br/>
+<br/>
+    // A private variable here        <br/>
+    var private = 42;<br/><br/>
+
+    // overriding the name<br/>
+    this.name = "Bello";<br/><br/>
+<br/>
+    // Implementing ".bark()"<br/>
+    this.bark = function () {<br/>
+        return 'MEOW';<br/>
+    }  <br/><br/>
+
+    return this;<br/>
+};<br/><br/>
+
+
+// Dog extends animal<br/>
+Dog.prototype = new Animal();<br/>
+<br/><br/>
+// -- Done declaring --<br/>
+<br/>
+// Creating an instance of Dog.<br/>
+var dog = new Dog();<br/><br/>
+
+// Proving our case<br/>
+console.log(<br/>
+    "Is dog an instance of Dog? ", dog instanceof Dog, "\n",<br/>
+    "Is dog an instance of Animal? ", dog instanceof Animal, "\n",<br/>
+    dog.bark() +"\n", // Should be: "MEOW"<br/>
+    dog.getName() +"\n", // Should be: "Bello"<br/>
+    dog.private +"\n" // Should be: 'undefined'<br/>
+);<br/><br/>
 
   <li>What do you think of AMD vs CommonJS?</li>
   Asynchronous Module Definition (AMD) AMD was born out of a group of developers that were displeased with the direction adopted by CommonJS. In fact, AMD was split from CommonJS early in its development. The main difference between AMD and CommonJS lies in its support for asynchronous module loading.
